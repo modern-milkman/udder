@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # 🐧 APT Repository
 
 This directory contains the APT repository structure for Modern Milkman internal tools.

@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # 🪟 WinGet Manifests
 
 This directory contains WinGet manifests for Modern Milkman internal tools.

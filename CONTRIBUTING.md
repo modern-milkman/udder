@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # 🥛 Contributing to Udder
 
 This guide explains how to add new tools to the Udder repository to make them available across platforms.

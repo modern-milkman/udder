@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # 🌐 GitHub Pages for Modern Milkman Udder
 
 This directory contains files for the GitHub Pages site that provides documentation and access to the APT repository.

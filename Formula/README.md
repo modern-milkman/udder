@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # 🍺 Homebrew Formula
 
 This directory contains Homebrew formulae for Modern Milkman internal tools.
