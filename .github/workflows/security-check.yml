@@ -17,6 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Find Binary Files
         id: find-binaries
         run: |
@@ -27,6 +28,7 @@ jobs:
 
           echo "deb_files=$deb_files" >> $GITHUB_OUTPUT
           echo "release_files=$release_files" >> $GITHUB_OUTPUT
+
       - name: Check Debian Packages for Authentication Requirements
         if: steps.find-binaries.outputs.deb_files != ''
         run: |
@@ -62,6 +64,7 @@ jobs:
               rm -rf "$temp_dir"
             fi
           done
+
       - name: Check Binary Signatures
         if: steps.find-binaries.outputs.release_files != ''
         run: |
@@ -88,10 +91,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y git-core grep
+
       - name: Scan for Potential Secrets
         run: |
           # This is a simple scan for potential secrets/sensitive information
@@ -122,5 +127,5 @@ jobs:
           else
             echo "No suspicious patterns found."
           fi
-          
+
           # This check shouldn't fail the workflow, just warn
