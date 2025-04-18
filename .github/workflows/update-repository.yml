@@ -84,6 +84,17 @@ jobs:
           if [ -f docs/KEY.gpg ]; then
             cp docs/KEY.gpg docs/KEY.gpg.bak
           fi
+      - name: Copy docs index.md to root
+        run: |
+          # Copy index.md from docs to the repository root
+          cp docs/index.md index.md
+          cp docs/_config.yml _config.yml
+          # Make sure Jekyll can find layouts
+          mkdir -p _layouts
+          if [ -d docs/_layouts ]; then
+            cp -r docs/_layouts/* _layouts/
+          fi
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
