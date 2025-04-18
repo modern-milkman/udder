@@ -14,10 +14,9 @@ jobs:
   check-binaries:
     name: Check Binary Security
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: actions/checkout@v3
-      
+      - uses: actions/checkout@v4
       - name: Find Binary Files
         id: find-binaries
         run: |
@@ -25,46 +24,44 @@ jobs:
           deb_files=$(find ./apt/pool -name "*.deb" -type f 2>/dev/null || echo "")
           # Find release artifacts (if stored in repo)
           release_files=$(find ./releases -type f -name "*.exe" -o -name "*.tar.gz" -o -name "*.zip" 2>/dev/null || echo "")
-          
+
           echo "deb_files=$deb_files" >> $GITHUB_OUTPUT
           echo "release_files=$release_files" >> $GITHUB_OUTPUT
-      
       - name: Check Debian Packages for Authentication Requirements
         if: steps.find-binaries.outputs.deb_files != ''
         run: |
           # Install tools
           sudo apt-get update
           sudo apt-get install -y dpkg-dev file
-          
+
           # Check each .deb package for postinst script
           echo "${{ steps.find-binaries.outputs.deb_files }}" | tr ' ' '\n' | while read -r pkg; do
             if [ -n "$pkg" ]; then
               echo "Checking $pkg for authentication requirements"
-              
+
               # Extract control information
               pkg_info=$(dpkg-deb -I "$pkg")
-              
-              # Check for postinst script 
+
+              # Check for postinst script
               dpkg-deb --fsys-tarfile "$pkg" | tar -tf - | grep -q "^./DEBIAN/postinst$" || {
                 echo "::error::Package $pkg lacks a postinst script, which should implement authentication checks."
                 exit 1
               }
-              
+
               # Extract and check the postinst script
               temp_dir=$(mktemp -d)
               dpkg-deb -R "$pkg" "$temp_dir"
               postinst_file="$temp_dir/DEBIAN/postinst"
-              
+
               if [ -f "$postinst_file" ]; then
                 if ! grep -q -E "auth|login|vpn|network" "$postinst_file"; then
                   echo "::warning::Package $pkg may not have proper authentication checks in its postinst script."
                 fi
               fi
-              
+
               rm -rf "$temp_dir"
             fi
           done
-      
       - name: Check Binary Signatures
         if: steps.find-binaries.outputs.release_files != ''
         run: |
@@ -75,7 +72,7 @@ jobs:
             if [ -n "$file" ]; then
               echo "Checking signature for $file"
               file_type=$(file -b "$file")
-              
+
               # This is where you would implement actual signature verification
               # For example, for Windows binaries, you might use osslsigncode
               # For macOS binaries, you might use codesign
@@ -88,20 +85,18 @@ jobs:
   check-manifests:
     name: Check for Sensitive Information
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: actions/checkout@v3
-      
+      - uses: actions/checkout@v4
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y git-core grep
-      
       - name: Scan for Potential Secrets
         run: |
           # This is a simple scan for potential secrets/sensitive information
           # In a real-world scenario, you might use a more sophisticated tool like trufflehog or gitleaks
-          
+
           suspicious_patterns=(
             "password"
             "secret"
@@ -111,7 +106,7 @@ jobs:
             "auth[_]?key"
             "private[_]?key"
           )
-          
+
           found_suspicious=0
           for pattern in "${suspicious_patterns[@]}"; do
             findings=$(grep -r -i -E "$pattern" --include="*.rb" --include="*.yaml" --include="*.yml" --include="*.json" . | grep -v ".github/workflows/security-check.yml" || true)
@@ -121,11 +116,11 @@ jobs:
               found_suspicious=1
             fi
           done
-          
+
           if [ $found_suspicious -eq 1 ]; then
             echo "::warning::Potential sensitive information found. Please review the findings."
           else
             echo "No suspicious patterns found."
           fi
-          
+
           # This check shouldn't fail the workflow, just warn

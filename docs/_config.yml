@@ -1,0 +1,19 @@
+theme: jekyll-theme-architect
+title: Modern Milkman Udder
+description: Internal tools distribution repository
+logo: images/logo.png
+
+# Exclude APT repository files from Jekyll processing
+exclude:
+  - /apt
+  - KEY.gpg
+
+# Keep specific directories as-is (no Jekyll processing)
+keep_files:
+  - apt
+  - KEY.gpg
+
+# Configure GitHub Pages
+github:
+  is_project_page: true
+  repository_url: https://github.com/modern-milkman/udder
