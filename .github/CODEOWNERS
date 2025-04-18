@@ -10,10 +10,10 @@
 README.md       @modern-milkman/engineering
 CONTRIBUTING.md @modern-milkman/engineering
 
-# All package additions require engineering review
-/apt/pool/      @modern-milkman/engineering
-/Formula/       @modern-milkman/engineering
-/manifests/     @modern-milkman/engineering
+# All package additions require security review
+/apt/pool/      @modern-milkman/engineering @modern-milkman/security
+/Formula/       @modern-milkman/engineering @modern-milkman/security
+/manifests/     @modern-milkman/engineering @modern-milkman/security
 
 # Placeholder: Add specific teams for specific tools
 # /apt/pool/tool-name/ @modern-milkman/team-name
