@@ -71,28 +71,19 @@ jobs:
           ref: main
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Make sure Jekyll doesn't process APT repository
+      - name: Prepare repository for GitHub Pages
         run: |
-          # Ensure .nojekyll files exist
+          # Ensure .nojekyll files exist to prevent Jekyll processing
           touch .nojekyll
           touch apt/.nojekyll
 
           # Create docs directory if it doesn't exist
           mkdir -p docs/images
 
-          # Copy KEY.gpg to docs if it exists
+          # Make sure KEY.gpg is available for APT repository users
           if [ -f docs/KEY.gpg ]; then
-            cp docs/KEY.gpg docs/KEY.gpg.bak
-          fi
-      - name: Copy docs index.md to root
-        run: |
-          # Copy index.md from docs to the repository root
-          cp docs/index.md index.md
-          cp docs/_config.yml _config.yml
-          # Make sure Jekyll can find layouts
-          mkdir -p _layouts
-          if [ -d docs/_layouts ]; then
-            cp -r docs/_layouts/* _layouts/
+            # Create a copy at the root level for direct URL access
+            cp docs/KEY.gpg KEY.gpg
           fi
           
       - name: Upload artifact
