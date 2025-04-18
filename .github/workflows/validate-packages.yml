@@ -14,12 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg-dev apt-utils
-
       - name: Validate Debian Packages
         run: |
           find apt/pool/main -name "*.deb" -type f | while read -r pkg; do
@@ -27,7 +25,6 @@ jobs:
             dpkg-deb -I "$pkg"
             dpkg-deb -c "$pkg"
           done
-
       - name: Check Package Signatures
         run: |
           find apt/pool/main -name "*.deb" -type f | while read -r pkg; do
@@ -43,14 +40,12 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Validate Homebrew Formulas
         run: |
           for formula in Formula/*.rb; do
             echo "Validating $formula"
             ruby -c "$formula"
           done
-
       - name: Check SHA256 Sums
         run: |
           for formula in Formula/*.rb; do
@@ -65,7 +60,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Validate WinGet Manifests
         run: |
           $manifests = Get-ChildItem -Path manifests -Recurse -Filter "*.yaml"
@@ -83,7 +77,6 @@ jobs:
               }
             }
           }
-
       - name: Check Manifest Requirements
         shell: pwsh
         run: |
@@ -111,7 +104,6 @@ jobs:
     needs: [validate-apt, validate-homebrew, validate-winget]
     steps:
       - uses: actions/checkout@v4
-
       - name: Verify Multi-Architecture Support
         run: |
           # Check that all tools have packages for all required architectures

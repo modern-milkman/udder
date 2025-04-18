@@ -20,7 +20,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Setup GPG
         env:
           GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
@@ -32,15 +31,12 @@ jobs:
           else
             echo "Warning: GPG private key not set. Repository will not be signed securely."
           fi
-
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y dpkg-dev apt-utils gnupg
-
       - name: Update APT Repository
         run: ./scripts/update-apt-repository.sh
-
       - name: Commit and Push Changes
         run: |
           git config --global user.name "GitHub Actions"
@@ -73,10 +69,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
       - name: Make sure Jekyll doesn't process APT repository
         run: |
           # Ensure .nojekyll files exist
@@ -90,12 +84,10 @@ jobs:
           if [ -f docs/KEY.gpg ]; then
             cp docs/KEY.gpg docs/KEY.gpg.bak
           fi
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
