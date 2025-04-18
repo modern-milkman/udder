@@ -35,6 +35,9 @@ brew install modern-milkman/udder/<package-name>
 ### 🪟 Windows (WinGet)
 
 ```powershell
+# Add the Modern Milkman source to WinGet
+winget source add -n ModernMilkman -u https://raw.githubusercontent.com/modern-milkman/udder/main/manifests
+
 # Install packages
 winget install ModernMilkman.<package-name>
 ```
