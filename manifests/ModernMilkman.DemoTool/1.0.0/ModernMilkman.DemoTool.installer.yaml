@@ -1,0 +1,23 @@
+# Created using WinGet Automation
+PackageIdentifier: ModernMilkman.DemoTool
+PackageVersion: 1.0.0
+InstallerLocale: en-GB
+MinimumOSVersion: 10.0.0.0
+InstallerType: exe
+Scope: user
+InstallModes:
+  - silent
+  - silentWithProgress
+InstallerSwitches:
+  Silent: /S
+  SilentWithProgress: /S
+UpgradeBehavior: install
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/modern-milkman/udder/releases/download/demo-tool-v1.0.0/demo-tool-1.0.0-windows-amd64.exe
+    InstallerSha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  - Architecture: arm64
+    InstallerUrl: https://github.com/modern-milkman/udder/releases/download/demo-tool-v1.0.0/demo-tool-1.0.0-windows-arm64.exe
+    InstallerSha256: fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210
+ManifestType: installer
+ManifestVersion: 1.4.0

@@ -1,0 +1,18 @@
+# Created using WinGet Automation
+PackageIdentifier: ModernMilkman.DemoTool
+PackageVersion: 1.0.0
+PackageLocale: en-GB
+Publisher: Modern Milkman
+PublisherUrl: https://github.com/modern-milkman
+PublisherSupportUrl: https://github.com/modern-milkman/udder/issues
+PackageName: Demo Tool
+PackageUrl: https://github.com/modern-milkman/udder
+License: MIT
+ShortDescription: Demo tool for Modern Milkman internal use
+Description: A demonstration tool showcasing how internal tools are published in the Udder repository
+Moniker: demo-tool
+Tags:
+  - modern-milkman
+  - internal-tool
+ManifestType: defaultLocale
+ManifestVersion: 1.4.0
