@@ -1,0 +1,5 @@
+This is a placeholder for the favicon file.
+
+Please replace this with your actual favicon image file (favicon.ico, favicon.png, or favicon.svg).
+
+A milk bottle or Modern Milkman logo would be appropriate for this project.
