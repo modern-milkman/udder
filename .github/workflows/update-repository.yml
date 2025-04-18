@@ -70,20 +70,22 @@ jobs:
         with:
           ref: main
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v3
+      
       - name: Make sure Jekyll doesn't process APT repository
         run: |
           # Ensure .nojekyll files exist
           touch .nojekyll
           touch apt/.nojekyll
-
+          
           # Create docs directory if it doesn't exist
           mkdir -p docs/images
-
+          
           # Copy KEY.gpg to docs if it exists
           if [ -f docs/KEY.gpg ]; then
             cp docs/KEY.gpg docs/KEY.gpg.bak
           fi
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
