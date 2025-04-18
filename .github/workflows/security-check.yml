@@ -122,5 +122,5 @@ jobs:
           else
             echo "No suspicious patterns found."
           fi
-
+          
           # This check shouldn't fail the workflow, just warn
