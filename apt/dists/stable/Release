@@ -1,0 +1,7 @@
+Origin: Modern Milkman
+Label: Udder
+Suite: stable
+Codename: stable
+Architectures: amd64 arm64
+Components: main
+Description: Modern Milkman internal tools repository

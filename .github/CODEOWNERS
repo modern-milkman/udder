@@ -1,0 +1,21 @@
+# Package Owners and Review Requirements
+
+# Engineering team reviews all infrastructure files
+/.github/       @modern-milkman/engineering
+/scripts/       @modern-milkman/engineering
+/docs/          @modern-milkman/engineering
+
+# Repository structure changes require Engineering review
+/apt/dists/     @modern-milkman/engineering
+README.md       @modern-milkman/engineering
+CONTRIBUTING.md @modern-milkman/engineering
+
+# All package additions require security review
+/apt/pool/      @modern-milkman/engineering @modern-milkman/security
+/Formula/       @modern-milkman/engineering @modern-milkman/security
+/manifests/     @modern-milkman/engineering @modern-milkman/security
+
+# Placeholder: Add specific teams for specific tools
+# /apt/pool/tool-name/ @modern-milkman/team-name
+# /Formula/tool-name.rb @modern-milkman/team-name
+# /manifests/ModernMilkman.ToolName/ @modern-milkman/team-name

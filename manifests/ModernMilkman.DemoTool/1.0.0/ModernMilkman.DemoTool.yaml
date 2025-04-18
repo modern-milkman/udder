@@ -1,0 +1,6 @@
+# Created using WinGet Automation
+PackageIdentifier: ModernMilkman.DemoTool
+PackageVersion: 1.0.0
+DefaultLocale: en-GB
+ManifestType: version
+ManifestVersion: 1.4.0

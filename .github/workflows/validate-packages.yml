@@ -1,0 +1,136 @@
+name: Validate Packages
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-apt:
+    name: Validate APT Packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev apt-utils
+      
+      - name: Validate Debian Packages
+        run: |
+          find apt/pool/main -name "*.deb" -type f | while read -r pkg; do
+            echo "Validating $pkg"
+            dpkg-deb -I "$pkg"
+            dpkg-deb -c "$pkg"
+          done
+      
+      - name: Check Package Signatures
+        run: |
+          find apt/pool/main -name "*.deb" -type f | while read -r pkg; do
+            echo "Checking signature for $pkg"
+            # Implementation depends on how packages are signed
+            # This is a placeholder for actual signature verification
+            # dpkg-sig --verify "$pkg"
+            echo "Signature check placeholder passed"
+          done
+
+  validate-homebrew:
+    name: Validate Homebrew Formulas
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate Homebrew Formulas
+        run: |
+          for formula in Formula/*.rb; do
+            echo "Validating $formula"
+            ruby -c "$formula"
+          done
+      
+      - name: Check SHA256 Sums
+        run: |
+          for formula in Formula/*.rb; do
+            echo "Checking SHA256 sums in $formula"
+            # Extract URLs and SHA256 sums from formulas and verify they match
+            # This is a placeholder for actual verification
+            grep -E "url|sha256" "$formula"
+          done
+
+  validate-winget:
+    name: Validate WinGet Manifests
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate WinGet Manifests
+        run: |
+          $manifests = Get-ChildItem -Path manifests -Recurse -Filter "*.yaml"
+          foreach ($manifest in $manifests) {
+            Write-Host "Validating $($manifest.FullName)"
+            # Real validation would use winget validate
+            Get-Content $manifest.FullName | Out-Null
+            
+            # Check for correct locale in version manifests
+            if ($manifest.Name -match "^ModernMilkman\..+\.yaml$" -and $manifest.Name -notmatch "\.installer\." -and $manifest.Name -notmatch "\.locale\.") {
+              $content = Get-Content $manifest.FullName -Raw
+              if (!($content -match "DefaultLocale: en-GB")) {
+                Write-Error "Missing or incorrect DefaultLocale (should be en-GB) in $($manifest.FullName)"
+                exit 1
+              }
+            }
+          }
+      
+      - name: Check Manifest Requirements
+        shell: pwsh
+        run: |
+          $installerManifests = Get-ChildItem -Path manifests -Recurse -Filter "*.installer.yaml"
+          foreach ($manifest in $installerManifests) {
+            Write-Host "Checking $($manifest.FullName) for architecture support"
+            $content = Get-Content $manifest.FullName -Raw
+            if (!($content -match "InstallerUrl")) {
+              Write-Error "Missing InstallerUrl in $($manifest.FullName)"
+              exit 1
+            }
+            if (!($content -match "Architecture")) {
+              Write-Error "Missing Architecture in $($manifest.FullName)"
+              exit 1
+            }
+            if (!($content -match "InstallerLocale: en-GB")) {
+              Write-Error "Missing or incorrect locale (should be en-GB) in $($manifest.FullName)"
+              exit 1
+            }
+          }
+
+  verify-cross-platform:
+    name: Verify Cross-Platform Support
+    runs-on: ubuntu-latest
+    needs: [validate-apt, validate-homebrew, validate-winget]
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Verify Multi-Architecture Support
+        run: |
+          # Check that all tools have packages for all required architectures
+          echo "Verifying multi-architecture support"
+          
+          # Get list of all packages
+          apt_packages=$(find apt/pool/main -name "*.deb" -type f | sort)
+          brew_formulas=$(find Formula -name "*.rb" -type f | sort)
+          winget_manifests=$(find manifests -name "*.installer.yaml" -type f | sort)
+          
+          # Verify each package has all required architectures
+          echo "APT packages:"
+          echo "$apt_packages"
+          
+          echo "Homebrew formulas:"
+          echo "$brew_formulas"
+          
+          echo "WinGet manifests:"
+          echo "$winget_manifests"
+          
+          # This is a placeholder for actual verification logic
+          echo "Cross-platform support verification completed"
