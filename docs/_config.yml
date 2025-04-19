@@ -1,7 +1,10 @@
 theme: jekyll-theme-architect
 title: Modern Milkman Udder
 description: Internal tools distribution repository
-logo: images/logo.png
+# Theme settings
+show_downloads: false
+google_analytics: 
+favicon: assets/favicon.png
 
 # Exclude APT repository files from Jekyll processing
 exclude:
