@@ -5,13 +5,13 @@ title: 'Add [TOOL NAME] to Udder'
 labels: new-tool
 ---
 
-## Tool Information
+## 🛠️ Tool Information
 
 **Name:** <!-- Tool name -->
 **Version:** <!-- Tool version -->
 **Description:** <!-- Brief description of the tool -->
 
-## Security Requirements Checklist
+## 🔒 Security Requirements Checklist
 
 - [ ] Tool requires authentication or VPN access after installation
 - [ ] Tool does not contain any sensitive information or secrets
@@ -19,16 +19,16 @@ labels: new-tool
 - [ ] DEB packages include postinst script for authentication
 - [ ] All architecture-specific binaries are provided
 
-## Platforms Support
+## 💻 Platforms Support
 
-- [ ] Linux (amd64)
-- [ ] Linux (arm64)
-- [ ] macOS (x86_64/Intel)
-- [ ] macOS (arm64/Apple Silicon)
-- [ ] Windows (x64)
-- [ ] Windows (arm64)
+- [ ] 🐧 Linux (amd64)
+- [ ] 🐧 Linux (arm64)
+- [ ] 🍎 macOS (x86_64/Intel)
+- [ ] 🍎 macOS (arm64/Apple Silicon)
+- [ ] 🪟 Windows (x64)
+- [ ] 🪟 Windows (arm64)
 
-## Testing Checklist
+## 🧪 Testing Checklist
 
 - [ ] Tested installation on all supported platforms
 - [ ] Verified authentication/VPN requirement works
