@@ -87,7 +87,7 @@ This guide explains how to add new tools to the Udder repository to make them av
 
 Run the update scripts (automated through GitHub Actions when you create a PR):
 
-```bash
+```sh
 # For APT
 ./scripts/update-apt-repository.sh
 
@@ -108,14 +108,14 @@ To test your packages locally before submitting:
 
 ### 🐧 APT
 
-```bash
+```sh
 # Validate .deb packages
 dpkg-deb -I your-package.deb
 ```
 
 ### 🍎 Homebrew
 
-```bash
+```sh
 # Test formula locally
 brew install --build-from-source ./Formula/your-package.rb
 ```

@@ -47,7 +47,7 @@ end
 
 ## 🧪 Testing Your Formula Locally
 
-```bash
+```sh
 # Install from the formula file
 brew install --build-from-source ./Formula/your-tool.rb
 

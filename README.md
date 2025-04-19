@@ -6,7 +6,7 @@ Repository for Modern Milkman internal tools binaries, available as APT reposito
 
 ### 🐧 Debian/Ubuntu Linux
 
-```bash
+```sh
 # Add the GPG key
 curl -fsSL https://modern-milkman.github.io/udder/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/modernmilkman-udder-archive-keyring.gpg
 
@@ -20,7 +20,7 @@ sudo apt install <package-name>
 
 ### 🍎 macOS (Homebrew)
 
-```bash
+```sh
 # Add the tap
 brew tap modern-milkman/udder
 
@@ -44,8 +44,8 @@ To verify that Udder is correctly installed on your system, run our verification
 
 ### Linux/macOS
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/modern-milkman/udder/main/scripts/verify-installation.sh | bash
+```sh
+curl -fsSL https://raw.githubusercontent.com/modern-milkman/udder/main/scripts/verify-installation.sh | sh
 ```
 
 ### Windows

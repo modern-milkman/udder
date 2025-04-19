@@ -91,7 +91,7 @@ check_homebrew_installation() {
   if ! command -v brew >/dev/null 2>&1; then
     echo "${RED}❌ Homebrew is not installed.${NC}"
     echo "${YELLOW}Please install Homebrew first:${NC}"
-    echo "/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+    echo "/bin/sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
     return 1
   fi
   
