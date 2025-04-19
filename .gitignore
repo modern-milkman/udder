@@ -1,3 +1,9 @@
+# IDE files
+.env
+.vs/
+.vscode/
+.idea/
+
 # Jekyll build artifacts
 _site/
 .jekyll-cache/
@@ -14,6 +20,10 @@ Gemfile.lock
 *~
 .DS_Store
 
+# Documents in the root directory
 /*.md
-!README.md
-!CONTRIBUTING.md
+!/README.md
+!/CONTRIBUTING.md
+
+# GPG Keys
+.gnupg/
