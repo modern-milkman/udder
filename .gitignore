@@ -13,3 +13,7 @@ Gemfile.lock
 *.swp
 *~
 .DS_Store
+
+/*.md
+!README.md
+!CONTRIBUTING.md
