@@ -42,7 +42,7 @@ done
 
 echo "Generate Release file"
 (cd "${APT_DIR}/dists/stable" && \
- apt-ftparchive release . > Release)
+ apt-ftparchive release .  -c=${APT_DIR}/aptftp.conf > Release)
 
 # If a signing key exists, sign the Release file
 if [ -f "${REPO_DIR}/.gnupg/private-key.asc" ]; then
@@ -55,8 +55,8 @@ if [ -f "${REPO_DIR}/.gnupg/private-key.asc" ]; then
 
   echo "Sign the Release file"
   (cd "${APT_DIR}/dists/stable" && \
-   gpg --default-key "udder-apt-repository" -abs -o Release.gpg Release && \
-   gpg --default-key "udder-apt-repository" --clearsign -o InRelease Release)
+   (rm Release.gpg || gpg --default-key "udder-apt-repository" -abs -o Release.gpg Release) && \
+   (rm InRelease || gpg --default-key "udder-apt-repository" --clearsign -o InRelease Release))
 
   echo "Export public key to docs directory for users to download"
   gpg --armor --export "udder-apt-repository" > "${KEY_FILE}"

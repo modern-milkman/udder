@@ -14,8 +14,6 @@ jobs:
   update-apt-repository:
     name: Update APT Repository
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'apt/pool/') || contains(github.event.head_commit.added, 'apt/pool/') }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -85,7 +83,7 @@ jobs:
             # Create a copy at the root level for direct URL access
             cp docs/KEY.gpg KEY.gpg
           fi
-          
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
