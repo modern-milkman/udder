@@ -8,7 +8,7 @@ Repository for Modern Milkman internal tools binaries, available as APT reposito
 
 ```sh
 # Add the GPG key
-curl -fsSL https://modern-milkman.github.io/udder/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/modernmilkman-udder-archive-keyring.gpg
+curl -fsSL https://modern-milkman.github.io/udder/docs/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/modernmilkman-udder-archive-keyring.gpg
 
 # Add the repository to sources list
 echo "deb [signed-by=/usr/share/keyrings/modernmilkman-udder-archive-keyring.gpg] https://modern-milkman.github.io/udder/apt stable main" | sudo tee /etc/apt/sources.list.d/modernmilkman-udder.list
