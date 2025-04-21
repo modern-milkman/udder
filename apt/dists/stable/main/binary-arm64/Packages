@@ -1,11 +1,11 @@
 Package: say-hello
-Version: 0.1.4
+Version: 0.2.0
 Architecture: all
 Maintainer: Ulises Tirado Zatarain
-Filename: pool/main/say-hello/say-hello_0.1.4_arm64.deb
-Size: 792
-MD5sum: 1ba64c0cbe652f383c76565f470ac39a
-SHA1: be9f29e7f33a888c1375051cc3766aec5c17e7f0
-SHA256: 3c51d8940cd5a403dbfcac2642c98bc3a2be82dfbd775878fa74975ea6ff4c92
+Filename: pool/main/say-hello/say-hello_0.2.0_arm64.deb
+Size: 782
+MD5sum: f1ace7b48f2f6eae308d3029502e4b49
+SHA1: 590e24d0d63e7ba69b2aed2e3f1f3d84577ea357
+SHA256: 68633bc0e3af2369b0932b58f359197e94474086dd69d3dc073c7b6ff5d2819e
 Description: Say Hello
 

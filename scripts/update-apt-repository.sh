@@ -54,9 +54,11 @@ if [ -f "${REPO_DIR}/.gnupg/private-key.asc" ]; then
   fi
 
   echo "Sign the Release file"
+  [ -f "${APT_DIR}/dists/stable/Release.gpg" ] && rm "${APT_DIR}/dists/stable/Release.gpg"
+  [ -f "${APT_DIR}/dists/stable/InRelease" ] && rm "${APT_DIR}/dists/stable/InRelease"
   (cd "${APT_DIR}/dists/stable" && \
-   (rm Release.gpg || gpg --default-key "udder-apt-repository" -abs -o Release.gpg Release) && \
-   (rm InRelease || gpg --default-key "udder-apt-repository" --clearsign -o InRelease Release))
+   gpg --default-key "udder-apt-repository" -abs -o Release.gpg Release && \
+   gpg --default-key "udder-apt-repository" --clearsign -o InRelease Release)
 
   echo "Export public key to docs directory for users to download"
   gpg --armor --export "udder-apt-repository" > "${KEY_FILE}"
