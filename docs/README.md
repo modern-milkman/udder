@@ -15,7 +15,7 @@ This directory contains files for the GitHub Pages site that provides documentat
 
 ## 🧩 Jekyll Configuration
 
-The site uses the "minimal" Jekyll theme with configuration to prevent Jekyll from processing the APT repository files, which would break the repository functionality.
+The site uses the "architect" Jekyll theme with configuration to prevent Jekyll from processing the APT repository files, which would break the repository functionality.
 
 ## 🚨 Important Notes
 

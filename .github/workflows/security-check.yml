@@ -39,11 +39,8 @@ jobs:
             if [ -n "$pkg" ]; then
               echo "Checking $pkg for authentication requirements"
 
-              # Extract control information
-              pkg_info=$(dpkg-deb -I "$pkg")
-
               # Check for postinst script
-              dpkg-deb --fsys-tarfile "$pkg" | tar -tf - | grep -q "^./DEBIAN/postinst$" || {
+              dpkg-deb --ctrl-tarfile "$pkg" | tar -tf - | grep -q "^./postinst$" || {
                 echo "::error::Package $pkg lacks a postinst script, which should implement authentication checks."
                 exit 1
               }
