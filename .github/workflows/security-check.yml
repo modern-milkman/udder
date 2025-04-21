@@ -21,9 +21,9 @@ jobs:
         id: find-binaries
         run: |
           # Find .deb packages
-          deb_files=$(find ./apt/pool -name "*.deb" -type f 2>/dev/null || echo "")
+          deb_files=$(find ./apt/pool -name "*.deb" -type f 2>/dev/null | tr '\n' ' ' | xargs || echo "")
           # Find release artifacts (if stored in repo)
-          release_files=$(find ./releases -type f -name "*.exe" -o -name "*.tar.gz" -o -name "*.zip" 2>/dev/null || echo "")
+          release_files=$(find ./releases -type f -name "*.exe" -o -name "*.tar.gz" -o -name "*.zip" 2>/dev/null | tr '\n' ' ' | xargs || echo "")
 
           echo "deb_files=$deb_files" >> $GITHUB_OUTPUT
           echo "release_files=$release_files" >> $GITHUB_OUTPUT
