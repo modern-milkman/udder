@@ -7,8 +7,8 @@ set -e
 SCRIPT_PATH="$(readlink -f "$0" 2>/dev/null || realpath "$0" 2>/dev/null || echo "$0")"
 REPO_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd)"
 KEY_DIR="${REPO_DIR}/.gnupg"
-KEY_NAME="udder-apt-repository"
-KEY_EMAIL="engineering@modernmilkman.co.uk"
+KEY_NAME="modern-milkman-udder"
+KEY_EMAIL="tech-engineering@themodernmilkman.co.uk"
 KEY_COMMENT="Modern Milkman Udder APT Repository Signing Key"
 
 # Check if GPG is installed

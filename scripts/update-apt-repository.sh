@@ -49,7 +49,7 @@ if [ -f "${REPO_DIR}/.gnupg/private-key.asc" ]; then
   echo "Signing Release file..."
 
   echo "Import the private key if it hasn't been imported yet"
-  if ! gpg --list-secret-keys "udder-apt-repository" >/dev/null 2>&1; then
+  if ! gpg --list-secret-keys "modern-milkman-udder" >/dev/null 2>&1; then
     gpg --import "${REPO_DIR}/.gnupg/private-key.asc"
   fi
 
@@ -57,11 +57,11 @@ if [ -f "${REPO_DIR}/.gnupg/private-key.asc" ]; then
   [ -f "${APT_DIR}/dists/stable/Release.gpg" ] && rm "${APT_DIR}/dists/stable/Release.gpg"
   [ -f "${APT_DIR}/dists/stable/InRelease" ] && rm "${APT_DIR}/dists/stable/InRelease"
   (cd "${APT_DIR}/dists/stable" && \
-   gpg --default-key "udder-apt-repository" -abs -o Release.gpg Release && \
-   gpg --default-key "udder-apt-repository" --clearsign -o InRelease Release)
+   gpg --default-key "modern-milkman-udder" -abs -o Release.gpg Release && \
+   gpg --default-key "modern-milkman-udder" --clearsign -o InRelease Release)
 
   echo "Export public key to docs directory for users to download"
-  gpg --armor --export "udder-apt-repository" > "${KEY_FILE}"
+  gpg --armor --export "modern-milkman-udder" > "${KEY_FILE}"
 else
   echo "Warning: No GPG key found at ${REPO_DIR}/.gnupg/private-key.asc"
   echo "Release file will not be signed. Repository will not be secure!"
