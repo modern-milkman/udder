@@ -1,0 +1,11 @@
+Package: say-hello
+Version: 0.4.0
+Architecture: all
+Maintainer: Ulises Tirado Zatarain
+Filename: pool/main/say-hello/say-hello_0.4.0_amd64.deb
+Size: 808
+MD5sum: 889d7fe2787db6a76d8df33fa905d67a
+SHA1: a90987d13ddadecb05cdadafa50c2ec5c767d3d5
+SHA256: 61e686dfbfc7819403a703685e2d643345e9679fde0ddb5762d6f5e0820f393f
+Description: Say Hello
+
